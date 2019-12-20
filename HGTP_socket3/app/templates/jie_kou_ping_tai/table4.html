@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>接口自动化运行页面</title>
+	<link rel="stylesheet" type="text/css" href="/static/table402/SyntaxHighlighter.css" />
+	<link rel="stylesheet" href="/static/jquery-ui-1.12.1/jquery-ui.css">
+	<link href="/static/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet">
+	<script src="{{url_for('static', filename='jquery-1.8.0.js')}}"></script>
+	<script src="{{url_for('static', filename='layer-v3.0\layer\layer.js')}}"></script>
+	<script type="text/javascript" src="/static/table402/styletable.jquery.plugin.js"></script>
+	<script type="text/javascript">
+	$(function(){
+
+		$('table#table4').styleTable({
+			th_bgcolor: '#CDDFB5',
+			th_border_color: '#4C5F3B',
+			tr_odd_bgcolor: '#F2FFE1',
+			tr_even_bgcolor: '#ffffff',
+			tr_border_color: '#6E8F50',
+			tr_hover_bgcolor: '#B4CF9B'
+
+		});
+
+
+		
+	});
+</script>
+
+</head>
+
+<body>
+
+
+<h4  align="center">脚本批量运行页面</h4>
+<div id="second_row">
+	<div id="format">
+
+		{% for i in yewu_name %}
+		<label for={{i}}+"checkbox">{{i}}</label>
+		<input type="checkbox" type="radio" name={{i}} id={{i}}+"checkbox" class="succedsucces">
+		{% endfor %}
+
+	</div>
+</div>
+<div id ="first_row">
+	<div id="select">
+		<select id="selectmenu">
+			<option selected="selected">all</option>
+			{% for i in yewu_name %}
+			<option>{{i}}</option>
+			{% endfor %}
+		</select>
+
+		<select id="selecttwo">
+			<option selected="selected">all</option>
+			{% for i in yewu_name %}
+			{% for z in yewu_name[i] %}
+
+			<option  name={{i}}  class={{i+'#'+z}}>{{z}}</option>
+			{% endfor %}
+			{% endfor %}
+		</select>
+	</div>
+	<button id="button">多接口运行</button>
+</div>
+
+<div  id="table">
+	<table id="table4" border="0" cellpadding="4" cellspacing="0" align="center" width="80%">
+		<thead>
+		<th align="left"  width="20%"><input type="checkbox" name="allcheck"  id="allcheck">
+			<label >全选</label></th>
+		<th align="left"  width="25%">业务名</th>
+		<th align="left"  width="25%">接口名</th>
+		<th align="center" width="15%">run</th>
+		<th align="center" width="15%">Edit</th>
+		<th align="center" width="15%">Delete</th>
+		</thead>
+		{% for i in yewu_name %}
+		{% for x in yewu_name[i] %}
+		<tr  name={{i}} class={{x}}>
+			<td align="left"><input type="checkbox" name="childcheck"  class={{i+"#"+x}}></td>
+			<td align="left">{{i}}</td>
+			<td align="left">{{x}}</td>
+			<td align="center"><a  onclick="return false;"  name={{x}} ><img src="/static/table402/images/magnifier.png" border="0"  href="#"   class={{i+"#"+x}} name="simple_run"></a></td>
+			<td align="center"><a  onclick="return false;"><img src="/static/table402/images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a  onclick="return false;"><img src="/static/table402/images/publish_r.png" border="0"></a></td>
+		</tr>
+		{% endfor %}
+		{% endfor %}
+
+	</table>
+
+</div>
+
+<script type="text/javascript" src="/static/table402/shCore.js"></script>
+<script type="text/javascript" src="/static/table402/shBrushJScript.js"></script>
+<script type="text/javascript" src="/static/table402/shBrushXml.js"></script>
+<script type="text/javascript" src="{{url_for('static', filename='layer-v3.0/layer/layer.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='jquery-ui-1.12.1/jquery-ui.js')}}"></script>
+<script type="text/javascript"   src="{{url_for('static', filename='jquery-ui-1.12.1/jquery-ui.min.js')}}"></script>
+<script type="text/javascript">
+$( 'input[class="succedsucces"]' ).checkboxradio();
+$('#format').width('970')
+//多选按钮根据选择的多选按钮是未选中的项目隐藏
+$('input[type="checkbox"]').change(function()
+
+{var a=$(this).attr('name')
+
+if ($(this).attr('checked'))
+{
+$('tr[name="'+a+'"]').show()
+$('tr[name="'+a+'"]').find('input').attr('checked',true)
+
+
+}
+
+else
+{
+
+
+$('tr[name="'+a+'"]').find('input').attr('checked',false)
+
+
+}
+
+}
+
+
+
+
+
+)
+//监听下拉列表change
+$("#selectmenu").selectmenu({
+            change:function(){
+            $('tr').show();
+            var a=$(this).val();
+            if (a=="all")
+            {
+            $('tr').show();
+            }
+            else
+            {
+            $('tr:not([name='+a+'])').hide();
+            $('tr:not([name])').show();
+            $('option:not([name='+a+'])').hide();
+            }
+            }
+        });
+
+$( "#selectmenu" ).selectmenu();
+$( "#selecttwo" ).selectmenu();
+$('#select').css({position:'relative','left':250,'top':20})
+$( "#button" ).button();
+$("#button").width(120).height(33);
+$('#button').css({position: "relative",'top':-15,'left':120});
+$('#second_row').css({position:'relative','left':122,'top':10})
+var $SCRIPT_ROOT = {{request.script_root|tojson|safe}};
+	dp.SyntaxHighlighter.HighlightAll('code');
+//批量运行按钮点击，向后端发送选中的复选框信息
+$('#button').click(function()
+{
+if ($('input[name="childcheck"]').is(':checked'))
+{
+var index = layer.msg('运行中', {
+  icon: 16
+  ,shade: 0.01,
+
+  time:0
+});
+
+var all=''
+$('input[name="childcheck"]').each(function()
+{
+if ($(this).attr('checked') &&  $(this).is(":visible"))
+{
+
+all=$(this).attr('class')+','+all
+
+}
+
+})
+if (all!='')
+{
+$('#button').text('运行中');
+$.post($SCRIPT_ROOT + '/simple_jie_kou_run', {ame: all},
+function(data)
+{
+layer.close(index);
+if (data.a=='1')
+{
+$('#button').text('多接口运行');
+window.open($SCRIPT_ROOT+'/jie_kou')
+}
+else
+{
+$('#button').text('多接口运行');
+alert(data.a)
+}
+}
+
+
+)
+}
+}
+}
+)
+//单个运行按钮点击，发送post请求，值为目录
+
+$('img[name="simple_run"]').each(function()
+{
+$(this).click(function()
+{
+var class_zhi=$(this).attr('class');
+var a=$(this);
+$(this).after('<a>运行中<\a>');
+$(this).hide();
+$.post($SCRIPT_ROOT + '/simple_jie_kou_run', {ame: class_zhi},
+function(data)
+{
+a.next().remove();
+a.show()
+if (data.a=='1')
+{
+window.open($SCRIPT_ROOT+'/jie_kou')
+}
+else
+{
+alert('error message:     '+data.a)
+}
+
+
+}
+
+)
+
+
+}
+
+)
+
+
+})
+
+//全选按钮
+$('#allcheck').click(function()
+{
+$('#allcheck').val()
+if ($('input[name="childcheck"]').attr('checked'))
+{
+
+$('input[name="childcheck"]').attr('checked',false)
+
+}
+else
+{
+$('input[name="childcheck"]').attr('checked',true)
+
+}
+}
+
+)
+</script>
+<div style="text-align:center;clear:both">
+	<p>适用浏览器：IE8、360、FireFox、Chrome </p>
+</div>
+</body>
+</html>

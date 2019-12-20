@@ -1,0 +1,254 @@
+{% extends "base.html" %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/static/new/css/bellows.min.css">
+<link rel="stylesheet" href="/static/new/css/bellows-theme.min.css">
+<link rel="stylesheet" href="/static/new/css/main.css">
+    <link rel="stylesheet" href= {{url_for('static', filename='jquery-ui-1.12.1/jquery-ui.css')}}>
+    <link rel="stylesheet" href= {{url_for('static', filename='DataTables-1.10.13/media/css/jquery.dataTables.min.css')}}>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">测试中</a></li>
+		<li><a href="#tabs-2">库存申请单详情表</a></li>
+		<li><a href="#tabs-3">商品表</a></li>
+	</ul>
+	<div id="tabs-1">
+
+
+<form action="/data_jiao_yan_sql" method="post">
+   库存单: <input type="text" name="new sql"  id ="data" />
+
+  <input type="button"  id="sqls"   value="submit" />
+</form>
+
+
+
+
+<table  class="display" id="example"   style="width:1500px; overflow:hidden;">
+        <thead>
+            <tr>
+                <th  width="20%">
+                    {{ b[0] }}
+                </th>
+                  <th  width="20%">
+                value
+                </th>
+
+                <th  width="20%">
+                    {{ b[1] }}
+                </th>
+                    <th  width="20%">
+                value
+                </th>
+                <th   width="20%">
+                {{ b[2] }}
+                </th>
+            </tr>
+        </thead>
+    {% for i in  value %}
+        <tbody>
+
+             <td  width="20%">
+                {{ i[0] }}
+                </td>
+                <td  width="20%">
+                {{ i[1] }}
+                </td>
+                      <td  width="20%">
+                {{ i[2] }}
+                </td>
+                         <td  width="20%">
+                {{ i[3] }}
+                </td>
+                         <td  width="20%">
+                {{ i[4] }}
+                </td>
+
+
+
+
+     </tbody>
+      {% endfor %}
+</table>
+    </div>
+	<div id="tabs-2">
+
+<table  class="display" id="example2"   style="width:1500px; overflow:hidden;">
+        <thead>
+            <tr>
+                <th  width="20%">
+                    {{ b1[0] }}
+                </th>
+                  <th  width="20%">
+                value
+                </th>
+
+                <th  width="20%">
+                    {{ b1[1] }}
+                </th>
+                    <th  width="20%">
+                value
+                </th>
+                <th   width="20%">
+                {{ b1[2] }}
+                </th>
+            </tr>
+        </thead>
+    {% for i in  value1 %}
+        <tbody>
+
+             <td  width="20%">
+                {{ i[0] }}
+                </td>
+                <td  width="20%">
+                {{ i[1] }}
+                </td>
+                      <td  width="20%">
+                {{ i[2] }}
+                </td>
+                         <td  width="20%">
+                {{ i[3] }}
+                </td>
+                         <td  width="20%">
+                {{ i[4] }}
+                </td>
+
+
+
+
+     </tbody>
+      {% endfor %}
+</table>
+    </div>
+	<div id="tabs-3">
+        <table  class="display" id="example3"   style="width:1500px; overflow:hidden;">
+        <thead>
+            <tr>
+                <th  width="20%">
+                    {{ b2[0] }}
+                </th>
+                  <th  width="20%">
+                value
+                </th>
+
+                <th  width="20%">
+                    {{ b2[1] }}
+                </th>
+                    <th  width="20%">
+                value
+                </th>
+                <th   width="20%">
+                {{ b2[2] }}
+                </th>
+            </tr>
+        </thead>
+    {% for i in  value2 %}
+        <tbody>
+
+             <td  width="20%">
+                {{ i[0] }}
+                </td>
+                <td  width="20%">
+                {{ i[1] }}
+                </td>
+                      <td  width="20%">
+                {{ i[2] }}
+                </td>
+                         <td  width="20%">
+                {{ i[3] }}
+                </td>
+                         <td  width="20%">
+                {{ i[4] }}
+                </td>
+
+
+
+
+     </tbody>
+      {% endfor %}
+</table>
+
+
+
+    </div>
+</div>
+
+		<!-- JavaScript -->
+
+    <script type="text/javascript" src="{{url_for('static', filename='jquery-1.8.0.js')}}"></script>
+     <script type="text/javascript" src="{{url_for('static', filename='jquery-ui-1.12.1/jquery-ui.js')}}"></script>
+    <script type="text/javascript"   src="{{url_for('static', filename='jquery-ui-1.12.1/jquery-ui.min.js')}}"></script>
+        <script src="/static/layer-v3.0/layer/layer.js"></script>
+    <script type="text/javascript"   src="{{url_for('static', filename='DataTables-1.10.13/media/js/jquery.dataTables.min.js')}}"></script>
+<script type=text/javascript>
+var $SCRIPT_ROOT = {{request.script_root|tojson|safe}};
+</script>
+		<script>
+           $('[name="shuchu"]').css({position: "relative ",'left':500,'top':-360})
+            $('[name="button"]').css({position: "relative ",'left':70,'top':-350})
+            $(document).ready(function(){
+
+                   $('#tabs').tabs()
+
+
+
+
+                }
+
+                )
+
+$('#sqls').click(function()
+
+        {
+$.post($SCRIPT_ROOT + '/yansql', {barcode:$('#data').val()},
+
+        function(data)
+        {
+
+
+          window.location.reload()
+
+        }
+
+)
+
+
+
+        }
+
+
+
+)
+		</script>
+	</div>
+</div>
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+</div>
+

@@ -1,0 +1,654 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>超强jquery表格样式 - 站长素材</title>
+<link rel="stylesheet" type="text/css" href="SyntaxHighlighter.css" />
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="styletable.jquery.plugin.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('table#table1').styleTable();
+
+		$('table#table2').styleTable({
+			th_bgcolor: '#3E83C9',
+			th_color: '#ffffff',
+			th_border_color: '#333333',
+			tr_odd_bgcolor: '#ECF6FC',
+			tr_even_bgcolor: '#ffffff',
+			tr_border_color: '#95BCE2',
+			tr_hover_bgcolor: '#BCD4EC'
+		});
+
+		$('table#table3').styleTable({
+			th_bgcolor: '#B9C9FE',
+			th_color: '#003399',
+			th_border_color: '#003399',
+			tr_odd_bgcolor: '#E8EDFF',
+			tr_even_bgcolor: '#E8EDFF',
+			tr_border_color: '#ffffff',
+			tr_hover_bgcolor: '#D0DAFD'
+		});
+
+		$('table#table4').styleTable({
+			th_bgcolor: '#CDDFB5',
+			th_border_color: '#4C5F3B',
+			tr_odd_bgcolor: '#F2FFE1',
+			tr_even_bgcolor: '#ffffff',
+			tr_border_color: '#6E8F50',
+			tr_hover_bgcolor: '#B4CF9B'
+		});
+
+		$('table#table5').styleTable({
+			th_bgcolor: '#BCD4EC',
+			th_image: './images/center.jpg',
+			th_color: '#000000',
+			th_border_color: '#333333',
+			tr_odd_image: './images/formbg.gif',
+			tr_even_image: './images/hnav-a-bg-black.jpg',
+			tr_hover_image: './images/s_bg.jpg',
+			tr_even_color: '#ffffff',
+			tr_border_color: '#cccccc'
+		});
+
+
+		$('table#table6').styleTable({
+			th_bgcolor: '#CDDFB5',
+			th_border_color: '#4C5F3B',
+			td_odd_bgcolor: '#ffffff',
+			td_even_bgcolor: '#F2FFE1',
+			td_hover_bgcolor: '#B4CF9B',
+			tr_border_color: '#6E8F50'
+		});
+		
+		$('table#table7').styleTable({
+			th_image: './images/bg_hover.png',
+			td_odd_image: './images/bg.jpg',
+			td_even_image: './images/formbg.gif',
+			td_hover_image: './images/bg_topbar.gif'
+		});
+		
+	});
+</script>
+
+</head>
+
+<body>
+
+   <h2 align="center">jQuery StyleTable Plugin</h2>
+   <p align="center">
+	The StyleTable is free/open source jQuery plugin that can be used to style the tables.<br /><br />
+	<img src="./images/tablestyle.gif" border="0" alt="jQuery StyleTable plugin" title="jQuery StyleTable plugin" />
+   </p>
+
+   <h2>How To Use</h2>
+   <p>Using StyleTable plugin is as easy as this line of code:</p>
+   
+	<textarea name="code" class="javascript">
+	$('table').styleTable();
+	</textarea>
+	That will style all tables on the page. Make sure to wrap your code in <strong>ready</strong> handler like this:
+
+	<textarea name="code" class="javascript">
+	$(document).ready(function(){
+		$('table').styleTable();
+	});
+	</textarea>
+
+	You can also specify the table(s) with specific class or id that you want styled:
+	<textarea name="code" class="javascript">
+	$(document).ready(function(){
+		$('table').styleTable(); 			// styles all tables on the page
+		$('table.fancy').styleTable(); 		// styles all tables on the page with class set to fancy
+		$('table#stylish').styleTable(); 	// styles a single table with id set to stylish
+	});
+	</textarea>
+
+	Make sure to include the jQuery library first and then StyleTable plugin before applying styles to the tables.
+
+	<textarea name="code" class="xml">
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="styletable.jquery.plugin.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('table').styleTable();
+		});
+	</script>
+	</textarea>
+	
+	<h2>Plugin Options</h2>
+	I have tried to make option names self-explanatory. Here they are:
+	
+	<textarea name="code" class="javascript">
+	// settings for headings
+	th_bgcolor	 		// heading background color
+	th_image			// heading background image
+	th_color			// heading text color
+	th_border_color		// heading top/bottom border color
+	
+	// settings for rows
+	tr_odd_bgcolor		// odd row background color
+	tr_even_bgcolor		// even row background color
+	tr_bgcolor			// all rows background color
+	tr_hover_bgcolor	// row background color on hover
+	tr_odd_image		// odd row background image
+	tr_even_image		// even row background image
+	tr_image			// all rows background image
+	tr_hover_image		// row background image on hover
+	tr_odd_color		// odd row text color
+	tr_even_color		// even row text color
+	tr_color			// all rows text color
+	tr_border_color		// all rows border color
+
+	// settings for columns
+	td_odd_bgcolor		// odd column background color
+	td_even_bgcolor		// even column background color
+	td_hover_bgcolor	// column background color on hover
+	td_odd_image		// odd column background image
+	td_even_image		// even column background image
+	td_hover_image		// column background image on hover
+	td_odd_color		// odd column text color
+	td_even_color		// even column text color
+	
+	// settings for table
+	font_name			// font name/family to be used for the table
+	font_size			// font size to be used for the table
+	</textarea>
+	
+	Since this plugin is free/open source, you can go on to modifying/adding more options to the plugin.
+	
+   <h2>Examples</h2>
+   
+   <h4>&rarr; Table not using StyleTable plugin</h4>
+   
+	<table border="0" cellpadding="4" cellspacing="0" align="center" width="30%">
+		<thead>
+			<th align="left">Subject</th>
+			<th align="center" width="30">View</th>
+			<th align="center" width="30">Edit</th>
+			<th align="center" width="30">Delete</th>
+		</thead>
+		
+		<tr>
+			<td align="left">Accounting</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Animation</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Anthropology</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Archaeology</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Architecture</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+
+		<tr>
+			<td align="left">Art</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		
+	</table>
+
+   <h4>&rarr; Table using StyleTable with default options</h4>
+
+	<textarea name="code" class="javascript">
+	$('table#table1').styleTable();
+	</textarea>
+   
+	<table id="table1" border="0" cellpadding="4" cellspacing="0" align="center" width="30%">
+		<thead>
+			<th align="left">Subject</th>
+			<th align="center" width="30">View</th>
+			<th align="center" width="30">Edit</th>
+			<th align="center" width="30">Delete</th>
+		</thead>
+
+		<tr>
+			<td align="left">Accounting</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Animation</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Anthropology</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Archaeology</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Architecture</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+
+		<tr>
+			<td align="left">Art</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		
+	</table>
+
+   <h4>&rarr; Table using StyleTable with custom options - example 1</h4>
+
+	<textarea name="code" class="javascript">
+	$('table#table2').styleTable({
+		th_bgcolor: '#3E83C9',
+		th_color: '#ffffff',
+		th_border_color: '#333333',
+		tr_odd_bgcolor: '#ECF6FC',
+		tr_even_bgcolor: '#ffffff',
+		tr_border_color: '#95BCE2',
+		tr_hover_bgcolor: '#BCD4EC'
+	});
+	</textarea>
+   
+	<table id="table2" border="0" cellpadding="4" cellspacing="0" align="center" width="30%">
+		<thead>
+			<th align="left">Subject</th>
+			<th align="center" width="30">View</th>
+			<th align="center" width="30">Edit</th>
+			<th align="center" width="30">Delete</th>
+		</thead>
+		
+		<tr>
+			<td align="left">Accounting</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Animation</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Anthropology</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Archaeology</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Architecture</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+
+		<tr>
+			<td align="left">Art</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		
+	</table>
+
+   <h4>&rarr; Table using StyleTable with custom options - example 2</h4>
+
+	<textarea name="code" class="javascript">
+	$('table#table3').styleTable({
+		th_bgcolor: '#B9C9FE',
+		th_color: '#003399',
+		th_border_color: '#003399',
+		tr_odd_bgcolor: '#E8EDFF',
+		tr_even_bgcolor: '#E8EDFF',
+		tr_border_color: '#ffffff',
+		tr_hover_bgcolor: '#D0DAFD'
+	});
+	</textarea>
+   
+	<table id="table3" border="0" cellpadding="4" cellspacing="0" align="center" width="30%">
+		<thead>
+			<th align="left">Subject</th>
+			<th align="center" width="30">View</th>
+			<th align="center" width="30">Edit</th>
+			<th align="center" width="30">Delete</th>
+		</thead>
+		
+		<tr>
+			<td align="left">Accounting</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Animation</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Anthropology</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Archaeology</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Architecture</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+
+		<tr>
+			<td align="left">Art</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		
+	</table>	
+
+   <h4>&rarr; Table using StyleTable with custom options - example 3</h4>
+
+	<textarea name="code" class="javascript">
+	$('table#table4').styleTable({
+		th_bgcolor: '#CDDFB5',
+		th_border_color: '#4C5F3B',
+		tr_odd_bgcolor: '#F2FFE1',
+		tr_even_bgcolor: '#ffffff',
+		tr_border_color: '#6E8F50',
+		tr_hover_bgcolor: '#B4CF9B'
+	});
+	</textarea>
+   
+	<table id="table4" border="0" cellpadding="4" cellspacing="0" align="center" width="30%">
+		<thead>
+			<th align="left">Subject</th>
+			<th align="center" width="30">View</th>
+			<th align="center" width="30">Edit</th>
+			<th align="center" width="30">Delete</th>
+		</thead>
+		
+		<tr>
+			<td align="left">Accounting</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Animation</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Anthropology</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Archaeology</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Architecture</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+
+		<tr>
+			<td align="left">Art</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		
+	</table>	
+	
+   <h4>&rarr; Table using StyleTable with custom options - example 4</h4>
+
+	<textarea name="code" class="javascript">
+	$('table#table5').styleTable({
+		th_bgcolor: '#BCD4EC',
+		th_image: './images/center.jpg',
+		th_color: '#000000',
+		th_border_color: '#333333',
+		tr_odd_image: './images/formbg.gif',
+		tr_even_image: './images/hnav-a-bg-black.jpg',
+		tr_hover_image: './images/s_bg.jpg',
+		tr_even_color: '#ffffff',
+		tr_border_color: '#cccccc'
+	});
+	</textarea>
+
+	<table id="table5" border="0" cellpadding="4" cellspacing="0" align="center" width="30%">
+		<thead>
+			<th align="left">Subject</th>
+			<th align="center" width="30">View</th>
+			<th align="center" width="30">Edit</th>
+			<th align="center" width="30">Delete</th>
+		</thead>
+		
+		<tr>
+			<td align="left">Accounting</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Animation</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Anthropology</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Archaeology</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Architecture</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+
+		<tr>
+			<td align="left">Art</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		
+	</table>	
+
+
+   <h4>&rarr; Table using StyleTable with custom options - example 5</h4>
+
+	<textarea name="code" class="javascript">
+	$('table#table6').styleTable({
+		th_bgcolor: '#CDDFB5',
+		th_border_color: '#4C5F3B',
+		td_odd_bgcolor: '#ffffff',
+		td_even_bgcolor: '#F2FFE1',
+		td_hover_bgcolor: '#B4CF9B',
+		tr_border_color: '#6E8F50'
+	});
+	</textarea>
+
+	<table id="table6" border="0" cellpadding="4" cellspacing="0" align="center" width="30%">
+		<thead>
+			<th align="left">Subject</th>
+			<th align="center" width="30">View</th>
+			<th align="center" width="30">Edit</th>
+			<th align="center" width="30">Delete</th>
+		</thead>
+		
+		<tr>
+			<td align="left">Accounting</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Animation</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Anthropology</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Archaeology</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Architecture</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+
+		<tr>
+			<td align="left">Art</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		
+	</table>	
+
+   <h4>&rarr; Table using StyleTable with custom options - example 6</h4>
+
+	<textarea name="code" class="javascript">
+	$('table#table7').styleTable({
+		th_image: './images/bg_hover.png',
+		td_odd_image: './images/bg.jpg',
+		td_even_image: './images/formbg.gif',
+		td_hover_image: './images/bg_topbar.gif'
+	});
+	</textarea>
+
+	<table id="table7" border="0" cellpadding="4" cellspacing="0" align="center" width="30%">
+		<thead>
+			<th align="left">Subject</th>
+			<th align="center" width="30">View</th>
+			<th align="center" width="30">Edit</th>
+			<th align="center" width="30">Delete</th>
+		</thead>
+		
+		<tr>
+			<td align="left">Accounting</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Animation</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Anthropology</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Archaeology</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		<tr>
+			<td align="left">Architecture</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+
+		<tr>
+			<td align="left">Art</td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/magnifier.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/page_white_edit.png" border="0"></a></td>
+			<td align="center"><a href="#" onclick="return false;"><img src="./images/publish_r.png" border="0"></a></td>
+		</tr>
+		
+	</table>	
+	
+  	<br /><br />
+	
+		<br /><br />
+		<!--<hr width="750" />-->
+		<p align="center">
+			返回 <a href="http://sc.chinaz.com/" style="color:#FF0066; font-weight:bold; text-decoration:none;">站长素材</a><br />
+
+
+<script type="text/javascript" src="shCore.js"></script>
+<script type="text/javascript" src="shBrushJScript.js"></script>
+<script type="text/javascript" src="shBrushXml.js"></script>
+<script type="text/javascript">
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+<div style="text-align:center;clear:both">
+<p>适用浏览器：IE8、360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. </p>
+<p>来源：<a href="http://sc.chinaz.com/" target="_blank">站长素材</a></p>
+</div>
+</body>
+</html>
